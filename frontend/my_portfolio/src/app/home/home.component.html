@@ -6,11 +6,10 @@
       <img src="assets/images/profilePicture.jpg" alt="Your Picture" class="profile-image">
       <h1>Développeur Full Stack & Data Ingineer</h1>
 
-      <button (click)="togglePdfViewer()">Visualiser mon CV</button>
+      <button (click)="togglePdfViewer()">{{ buttonText }}</button>
 
-      <ngx-extended-pdf-viewer *ngIf="showPdfViewer" [src]="'assets/documents/mon_cv.pdf'" height="600px">
-        <button (click)="togglePdfViewer()">Fermer</button>
-      </ngx-extended-pdf-viewer>
+      <ngx-extended-pdf-viewer *ngIf="showPdfViewer" [src]="'assets/documents/mon_cv.pdf'" height="600px"></ngx-extended-pdf-viewer>
+
 
       <h2>Formation :</h2>
 

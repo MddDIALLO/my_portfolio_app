@@ -7,8 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   showPdfViewer: boolean = false;
+  buttonText = 'Visualiser mon CV';
 
-  togglePdfViewer(): void {
+  togglePdfViewer() {
     this.showPdfViewer = !this.showPdfViewer;
+    this.buttonText = this.showPdfViewer ? 'Fermer' : 'Visualiser mon CV';
   }
 }
