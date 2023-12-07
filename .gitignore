@@ -1,0 +1,43 @@
+/backend
+docker-compose.yml
+/frontend/Dockerfile
+# Compiled output
+/frontend/my_portfolio/dist
+/frontend/my_portfolio/tmp
+/frontend/my_portfolio/out-tsc
+/frontend/my_portfolio/bazel-out
+
+# Node
+/frontend/my_portfolio/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+/frontend/my_portfolio/.vscode/settings.json
+/frontend/my_portfolio/.vscode/tasks.json
+/frontend/my_portfolio/.vscode/launch.json
+/frontend/my_portfolio/.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/frontend/my_portfolio/.angular/cache
+.sass-cache/
+/frontend/my_portfolio/connect.lock
+/frontend/my_portfolio/coverage
+/frontend/my_portfolio/libpeerconnection.log
+testem.log
+/frontend/my_portfolio/typings
+
+# System files
+.DS_Store
+Thumbs.db
