@@ -4,9 +4,16 @@
 
     <div class="profile-section">
       <img src="assets/images/profilePicture.jpg" alt="Your Picture" class="profile-image">
-      <h1>Développeur Full Stack & Ingénieur de données</h1>
+      <h1>Développeur Full Stack & Data Ingineer</h1>
+
+      <button (click)="togglePdfViewer()">Visualiser mon CV</button>
+
+      <ngx-extended-pdf-viewer *ngIf="showPdfViewer" [src]="'assets/documents/mon_cv.pdf'" height="600px">
+        <button (click)="togglePdfViewer()">Fermer</button>
+      </ngx-extended-pdf-viewer>
 
       <h2>Formation :</h2>
+
       <p>Baccalauréat en Sciences Mathématiques : Le parcours académique a été initié avec un Baccalauréat en Sciences Mathématiques, offrant une solide base de logique, d'analyse et de résolution de problèmes.</p>
       <p>Licence Professionnelle en Génie Informatique : Par la suite, j'ai obtenu une Licence Professionnelle en Génie Informatique, combinant les compétences mathématiques avec une expertise technique en développement logiciel, architecture des ordinateurs et systèmes d'information.</p>
 
@@ -28,6 +35,11 @@
       </ul>
 
       <p>Mon parcours académique et professionnel diversifié, alliant les compétences mathématiques à une expertise en génie informatique et en gestion de l'information, constitue la base solide sur laquelle je souhaite continuer à évoluer. Mon objectif actuel est de trouver une opportunité d'alternance au sein d'une entreprise innovante où je pourrai mettre en pratique mes compétences tout en contribuant activement à des projets stimulants et en apprenant au contact d'une équipe expérimentée.</p>
+
+      <h2>Télécharger mon CV :</h2>
+      <p>
+        <a href="assets/documents/mon_cv.pdf" download="DIALLO_CV.pdf">Télécharger CV</a>
+      </p>
     </div>
   </div>
 </main>

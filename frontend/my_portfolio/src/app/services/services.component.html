@@ -1,1 +1,14 @@
-<p>services works!</p>
+<main class="main">
+  <div class="content">
+    <h1>Our Services</h1>
+    <div class="services">
+      <div class="service" *ngFor="let service of services">
+        <h2>{{ service.title }}</h2>
+        <p>{{ service.description }}</p>
+        <ul>
+          <li *ngFor="let detail of service.details">{{ detail }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>

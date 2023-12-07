@@ -4,10 +4,11 @@
   </div>
   <nav>
     <ul>
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/contact">Contact</a></li>
-      <li><a routerLink="/projects">Projects</a></li>
-      <li><a routerLink="/services">Services</a></li>
+      <li *ngIf="!isHomePage()"><a routerLink="/" routerLinkActive="active">Home</a></li>
+      <li *ngIf="!isContactPage()"><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      <li *ngIf="!isProjectsPage()"><a routerLink="/projects" routerLinkActive="active">Projects</a></li>
+      <li *ngIf="!isServicesPage()"><a routerLink="/services" routerLinkActive="active">Services</a></li>
     </ul>
   </nav>
 </header>
+
