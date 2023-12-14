@@ -9,6 +9,7 @@ docker-compose.yml
 
 # Node
 /frontend/my_portfolio/node_modules
+/backend/API/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -41,3 +42,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+/backend/API/.env

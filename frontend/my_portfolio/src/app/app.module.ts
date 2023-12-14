@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ServicesComponent } from './services/services.component';
-import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-view
     HomeComponent,
     ContactComponent,
     ProjectsComponent,
-    ServicesComponent,
-    ExamplePdfViewerComponent
+    ServicesComponent
   ],
   imports: [
     BrowserModule,

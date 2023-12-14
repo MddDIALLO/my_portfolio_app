@@ -9,14 +9,13 @@ export class ServicesComponent {
   public services: any[] = [
     {
       title: 'Web Development Services',
-      description: 'Our web development services include:',
+      description: 'My web development services include:',
       details: ['Front-end Development', 'Back-end Development', 'Responsive Design']
     },
     {
       title: 'Data Management Services',
-      description: 'Our data management services encompass:',
+      description: 'My data management services encompass:',
       details: ['Data Analysis', 'Database Management', 'Data Warehousing']
-    },
-    // Add more services as needed...
+    }
   ];
 }
