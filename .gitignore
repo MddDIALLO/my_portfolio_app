@@ -1,15 +1,15 @@
-/backend
+
 docker-compose.yml
-/frontend/Dockerfile
+/Dockerfile
 # Compiled output
-/frontend/my_portfolio/dist
-/frontend/my_portfolio/tmp
-/frontend/my_portfolio/out-tsc
-/frontend/my_portfolio/bazel-out
+/my_portfolio/dist
+/my_portfolio/tmp
+/my_portfolio/out-tsc
+/my_portfolio/bazel-out
 
 # Node
-/frontend/my_portfolio/node_modules
-/backend/API/node_modules
+/my_portfolio/node_modules
+/API/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -24,22 +24,32 @@ yarn-error.log
 
 # Visual Studio Code
 .vscode/*
-/frontend/my_portfolio/.vscode/settings.json
-/frontend/my_portfolio/.vscode/tasks.json
-/frontend/my_portfolio/.vscode/launch.json
-/frontend/my_portfolio/.vscode/extensions.json
+/my_portfolio/.vscode/settings.json
+/my_portfolio/.vscode/tasks.json
+/my_portfolio/.vscode/launch.json
+/my_portfolio/.vscode/extensions.json
 .history/*
 
 # Miscellaneous
-/frontend/my_portfolio/.angular/cache
+/my_portfolio/.angular/cache
 .sass-cache/
-/frontend/my_portfolio/connect.lock
-/frontend/my_portfolio/coverage
-/frontend/my_portfolio/libpeerconnection.log
+/my_portfolio/connect.lock
+/my_portfolio/coverage
+/my_portfolio/libpeerconnection.log
 testem.log
-/frontend/my_portfolio/typings
+/my_portfolio/typings
 
 # System files
 .DS_Store
 Thumbs.db
-/backend/API/.env
+/API/node_modules
+/API/.dockerignore
+.terraform/
+.env
+*#
+*~
+*.tfvars
+*.tfstate
+*.backup
+*.hcl
+tf_vm_plan
