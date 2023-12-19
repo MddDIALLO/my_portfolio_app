@@ -1,0 +1,19 @@
+<main class="main">
+  <div class="content">
+    <h1>Login</h1>
+    <form class="contact-form" (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required [(ngModel)]="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required [(ngModel)]="password">
+      </div>
+      <div *ngIf="credentialIssue" class="error-message">Invalid Inputs</div>
+      <button type="submit">Login</button>
+    </form>
+    <div *ngIf="reqIssue" class="error-message">{{ reqIssueMessage }}</div>
+    <p>Don't have an account? <a routerLink="/register">Register</a></p>
+  </div>
+</main>

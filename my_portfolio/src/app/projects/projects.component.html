@@ -1,13 +1,15 @@
 <main class="main">
   <div class="content">
-    <h1>Web Development Projects</h1>
+    <h1>My Projects</h1>
     <div class="projects">
       <div class="project" *ngFor="let project of projects">
-        <h2>{{ project.title }}</h2>
-        <p>{{ project.description }}</p>
-        <ul>
-          <li *ngFor="let technology of project.technologies">{{ technology }}</li>
-        </ul>
+        <div *ngIf="project.type === 'PROJECT' && project.name.length > 0">
+          <h2>{{ project.name }}</h2>
+          <p>{{ project.description }}</p>
+          <ul>
+            <li *ngFor="let technology of project.technologies">{{ technology.name }}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import technologyDB from '../db/technology'
 import { Technology } from '../models/technology';
 import projectDB from '../db/project';
@@ -44,13 +44,14 @@ const getTechnologyById = async (req: Request, res: Response) => {
 
 const addNewTechnology = async (req: Request, res: Response) => {
     try {
-        const { type, subject, name } = req.body;
+        const { type, subject, name, image_url } = req.body;
 
         const newTechnology: Technology = {
             id: 0,
             type: '',
             subject: '',
-            name: ''
+            name: '',
+            image_url: ''
         }
 
         if(type) {
@@ -81,6 +82,10 @@ const addNewTechnology = async (req: Request, res: Response) => {
             return res.status(400).send({ message: 'Name is required' });
         }
 
+        if(image_url) {
+            newTechnology.image_url = image_url;
+        }
+
         try {
             const insertedId = await technologyDB.addNewTechnology(newTechnology);
             res.status(200).send({
@@ -100,12 +105,13 @@ const addNewTechnology = async (req: Request, res: Response) => {
 const updateTechnology = async (req: Request, res: Response) => {
     try {
         const technologyId = Number(req.params.id);
-        const { type, subject, name } = req.body;
+        const { type, subject, name, image_url } = req.body;
         let updatedTechnology: Technology = {
             id: 0,
             type: '',
             subject: '',
-            name: ''
+            name: '',
+            image_url: ''
         };
 
         const technologyResult = await technologyDB.getTechnologyById(technologyId);
@@ -138,6 +144,10 @@ const updateTechnology = async (req: Request, res: Response) => {
             } else {
                 return res.status(400).send({ message: 'Invalid Technology name: it must contains at least 3 characters' });
             }
+        }
+
+        if(image_url) {
+            updatedTechnology.image_url = image_url;
         }
 
         const updated = await technologyDB.updateTechnology(technologyId, updatedTechnology);

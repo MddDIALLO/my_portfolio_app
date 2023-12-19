@@ -1,22 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../service/project/project.service';
+import { Project } from '../models/project.interface';
+interface ProjectData {
+  message: string;
+  result: Project[]
+}
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss'
+  styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent {
-  public projects: any[] = [
-    {
-      title: 'Project 1',
-      description: 'Description for Project 1',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Angular']
-    },
-    {
-      title: 'Project 2',
-      description: 'Description for Project 2',
-      technologies: ['React', 'Node.js', 'MongoDB']
-    },
-    // Add more projects as needed...
-  ];
+export class ProjectsComponent implements OnInit {
+  public projects: Project[] = [];
+
+  constructor(
+    private _projectService: ProjectService
+  ) {}
+
+  ngOnInit(): void {
+    this._projectService.getProjects().subscribe(data => {
+      let tableData: ProjectData | any = data;
+      const responseData: any = JSON.parse(tableData);
+      const results: Project[] = responseData.result;
+
+      if(results) {
+        this.projects = results;
+      }
+    });
+  }
 }

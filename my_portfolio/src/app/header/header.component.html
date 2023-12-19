@@ -7,7 +7,10 @@
       <li *ngIf="!isHomePage()"><a routerLink="/" routerLinkActive="active">Home</a></li>
       <li *ngIf="!isContactPage()"><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
       <li *ngIf="!isProjectsPage()"><a routerLink="/projects" routerLinkActive="active">Projects</a></li>
-      <li *ngIf="!isServicesPage()"><a routerLink="/services" routerLinkActive="active">Services</a></li>
+      <li *ngIf="!isServicesPage() && isLogedIn()"><a routerLink="/services" routerLinkActive="active">Services</a></li>
+      <li class="login" *ngIf="!isLoginPage() && !isRegisterPage() && !isLogedIn()"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+      <li class="login" *ngIf="!isLoginPage() && !isRegisterPage() && isLogedIn()"><a routerLink="/logout" routerLinkActive="active">Logout</a></li>
+      <li *ngIf="isAdmin() && isLogedIn() && !isAdminPage()"><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
     </ul>
   </nav>
 </header>

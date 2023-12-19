@@ -3,4 +3,5 @@ export interface Technology {
     type: string;
     subject: string;
     name: string;
+    image_url: string;
 }

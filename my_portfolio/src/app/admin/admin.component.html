@@ -1,0 +1,107 @@
+<main class="admin">
+  <div class="content">
+    <section class="admin-section-users">
+      <h2>Users Management</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+              <button class="edit-btn" (click)="editUser(user.id)">Edit</button>
+              <button class="delete-btn" (click)="deleteUser(user.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="admin-section-technologies" *ngIf="!isEditingTechnology">
+      <h2>Technologies Management</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Subject</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let technology of technologies">
+            <td>{{ technology.id }}</td>
+            <td>{{ technology.type }}</td>
+            <td>{{ technology.subject }}</td>
+            <td>{{ technology.name }}</td>
+            <td>
+              <button class="edit-btn" (click)="showEditTechnologyForm(technology.id)">Edit</button>
+              <button class="delete-btn" (click)="deleteTechnology(technology.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="edit-technology-form" *ngIf="isEditingTechnology">
+      <h2>Edit Technology</h2>
+      <form (ngSubmit)="editTechnology(selectedTechnology.id)">
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" [(ngModel)]="selectedTechnology.type" placeholder="Enter type">
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" [(ngModel)]="selectedTechnology.subject" placeholder="Enter subject">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="selectedTechnology.name" placeholder="Enter name">
+
+        <input type="file" id="image" name="image" (change)="onImageChange($event)" accept="image/*">
+        <div class="preview-image">
+          <img [src]="selectedTechnology.image_url" alt="Technology Image" *ngIf="selectedTechnology.image_url" class="preview-image">
+        </div>
+
+        <button type="submit">Update</button>
+        <button type="button" (click)="cancelEditTechnology()">Cancel</button>
+      </form>
+    </section>
+
+    <section class="admin-section-projects">
+      <h2>Projects Management</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Subject</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projects">
+            <td>{{ project.id }}</td>
+            <td>{{ project.type }}</td>
+            <td>{{ project.subject }}</td>
+            <td>{{ project.name }}</td>
+            <td>{{ project.description }}</td>
+            <td>
+              <button class="edit-btn" (click)="editProject(project.id)">Edit</button>
+              <button class="delete-btn" (click)="deleteProject(project.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</main>

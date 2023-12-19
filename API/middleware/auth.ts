@@ -5,6 +5,7 @@ declare global {
     namespace Express {
         interface Request {
             user?: any;
+            isAuth?: boolean;
             isAdmin?: boolean;
         }
     }
