@@ -21,6 +21,6 @@ export class LogoutService {
       }), responseType: 'text' as 'json'
     }
 
-    return this.http.post(`${this.API_URL}/users/logout`, { token: token }, options);
+    return this.http.post(`${this.API_URL}/api/users/logout`, { token: token }, options);
   }
 }

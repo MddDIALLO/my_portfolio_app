@@ -19,6 +19,6 @@ export class ProjectService {
   ) {}
 
   getProjects() {
-    return this.http.get(`${this.API_URL}/projects`, this.options);
+    return this.http.get(`${this.API_URL}/api/projects`, this.options);
   }
 }

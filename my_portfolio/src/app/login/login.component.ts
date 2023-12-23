@@ -33,10 +33,6 @@ export class LoginComponent {
       return;
     }
 
-    if(localStorage.getItem('token')) {
-      console.log(localStorage.getItem('token'));
-    }
-
     this.loginService.login(this.email, this.password).subscribe(
       response => {
         const responseData: Rep = JSON.parse(response);
@@ -49,8 +45,6 @@ export class LoginComponent {
             connectedUser: responseData.connectedUser,
             expiresAt: tokenExpiration,
           };
-
-          console.log(tokenData);
 
           if(localStorage.getItem('token')) {
             localStorage.removeItem('token');

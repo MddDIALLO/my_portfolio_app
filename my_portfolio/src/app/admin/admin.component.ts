@@ -7,6 +7,17 @@ import { UserTable, UsersData } from '../models/user.interface';
 import { ProjectData } from '../models/project.interface';
 import { Technology, TechnologyData } from '../models/technology.interface';
 import { TechnologyService } from '../service/technology/technology.service';
+import { ImageService } from '../service/image.service';
+
+interface ImageRes {
+  message: string;
+  filePath: string;
+}
+
+interface UpdateTechRes {
+  message: string;
+  technologyId: number;
+}
 
 @Component({
   selector: 'app-admin',
@@ -23,6 +34,7 @@ export class AdminComponent {
     name: '',
     image_url: ''
   };
+  staticUrl: string = 'http://localhost:4201/static/';
 
   public projects: Project[] = [];
   public users: UserTable[] = [];
@@ -31,7 +43,8 @@ export class AdminComponent {
   constructor(
     private _projectService: ProjectService,
     private _getUsersService: GetUsersService,
-    private _getTechnologiesService: TechnologyService
+    private _technologiesService: TechnologyService,
+    private _imagesService: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -72,7 +85,7 @@ export class AdminComponent {
   }
 
   loadTechnologies() {
-    this._getTechnologiesService.getTechnologies().subscribe(data => {
+    this._technologiesService.getTechnologies().subscribe(data => {
       let responseData: TechnologyData | any = data;
       const parsedResponseData: any = JSON.parse(responseData);
       const results: Technology[] = parsedResponseData.result;
@@ -84,7 +97,11 @@ export class AdminComponent {
   }
 
   showEditTechnologyForm(technologyId: number) {
-    this.selectedTechnology.id = technologyId;
+    const technologyItem: Technology | undefined = this.technologies.find((element) => element.id === technologyId);
+    if(technologyItem){
+      this.selectedTechnology = technologyItem;
+    }
+
     this.isEditingTechnology = true;
   }
 
@@ -104,21 +121,64 @@ export class AdminComponent {
     console.log(`Delete user with ID ${userId}`);
   }
 
-  editTechnology(technologyId: number) {
-    console.log(`Edit technology: ${this.selectedTechnology.id, this.selectedTechnology.image_url}`);
-    this.submitUpdatedTechnology();
+  getFileExtension(fileName: string): string {
+    return fileName.slice(((fileName.lastIndexOf('.') - 1) >>> 0) + 2);
   }
 
   onImageChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
+
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
       const reader = new FileReader();
+
       reader.onload = () => {
-        this.selectedTechnology.image_url = reader.result as string;
+        const imageData = reader.result as string;
+        const uploadPath = 'images';
+        const fileExtension = this.getFileExtension(file.name);
+        const fileName = `technology_${this.selectedTechnology.id}.${fileExtension}`;
+
+        this._imagesService.uploadImage(imageData, uploadPath, fileName).subscribe(
+          (response) => {
+            const responseData: any = response;
+            const data: ImageRes = JSON.parse(responseData);
+            if(data.message === 'Image saved successfully') {
+              this.selectedTechnology.image_url = fileName;
+              console.log(this.selectedTechnology);
+            }
+          },
+          (error) => {
+            console.error('Error uploading image:', error);
+          }
+        );
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  editTechnology() {
+    if(this.selectedTechnology.id > 0) {
+      this._technologiesService.updateTechnology(
+        this.selectedTechnology.id,
+        this.selectedTechnology.type,
+        this.selectedTechnology.subject,
+        this.selectedTechnology.name,
+        this.selectedTechnology.image_url
+        ).subscribe(
+          (response) => {
+            const responseData: any = response;
+            const data: UpdateTechRes = JSON.parse(responseData);
+            if(data.message === 'Technology updated successfully') {
+              console.log(data.message);
+            }
+          },
+          (error) => {
+            console.error('Error uploading image:', error);
+          }
+        )
+    }
+
+    this.submitUpdatedTechnology();
   }
 
   deleteTechnology(technologyId: number) {

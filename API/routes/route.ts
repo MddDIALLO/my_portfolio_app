@@ -9,5 +9,6 @@ const routes = Router();
 routes.use('/users', userRouter);
 routes.use('/technologies', technologyRouter);
 routes.use('/projects', projectRouter);
-routes.use('/upload', imageRouter);
+routes.use('/images', imageRouter);
+
 export default routes;

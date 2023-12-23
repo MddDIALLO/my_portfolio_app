@@ -19,6 +19,6 @@ export class GetUsersService {
         'Authorization': `Bearer ${token}`
       }), responseType: 'text' as 'json'
     }
-    return this.http.get(`${this.API_URL}/users`, options);
+    return this.http.get(`${this.API_URL}/api/users`, options);
   }
 }
